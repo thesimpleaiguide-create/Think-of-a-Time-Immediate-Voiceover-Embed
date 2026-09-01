@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Think of a Time...</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -38,20 +39,33 @@
 </head>
 <body class="bg-transparent m-0 p-4 sm:p-8 flex items-center justify-center min-h-[320px] w-full font-sans antialiased">
 
-    <div class="w-full max-w-4xl mx-auto flex flex-col items-center justify-center text-center py-8 sm:py-12 px-4 cursor-pointer select-none space-y-6" onclick="replayAudio()">
+    <!-- Card Container with Watermark Background Layer -->
+    <div class="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-sm border border-slate-200/80 bg-white flex flex-col items-center justify-center text-center py-10 sm:py-14 px-6 cursor-pointer select-none space-y-6" onclick="replayAudio()">
         
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-ttnNavy tracking-tight leading-tight">
-            Think of a Time...
-        </h1>
+        <!-- Watermark Background Image Layer -->
+        <div class="absolute inset-0 z-0 opacity-25 bg-cover bg-center pointer-events-none" style="background-image: url('Watermark_Background_2.jpeg');"></div>
 
-        <p id="subheadingContainer" class="text-lg sm:text-2xl lg:text-3xl text-slate-600 font-normal leading-relaxed max-w-3xl"></p>
+        <!-- Content Area -->
+        <div class="relative z-10 w-full flex flex-col items-center space-y-4">
+            
+            <!-- Large Prominent Heading -->
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-ttnNavy tracking-tight leading-tight">
+                Think of a Time...
+            </h1>
 
-        <div class="pt-3">
-            <div class="w-20 sm:w-28 h-1.5 sm:h-2 bg-ttnTrustBlue rounded-full shadow-sm"></div>
+            <!-- Subheading with Synchronized Word Highlights -->
+            <p id="subheadingContainer" class="text-lg sm:text-2xl lg:text-3xl text-slate-700 font-medium leading-relaxed max-w-3xl"></p>
+
+            <!-- Centered Accent Bar -->
+            <div class="pt-2">
+                <div class="w-20 sm:w-28 h-1.5 sm:h-2 bg-ttnTrustBlue rounded-full shadow-sm"></div>
+            </div>
+
         </div>
 
     </div>
 
+    <!-- Hidden Audio Player -->
     <audio id="syncAudio" preload="auto"></audio>
 
     <script>
