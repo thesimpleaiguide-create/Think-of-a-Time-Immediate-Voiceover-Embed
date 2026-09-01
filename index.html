@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Think of a Time...</title>
+    <title>Think of a Time - Reflection</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -17,36 +17,54 @@
                         ttnIceBlue: '#DBE2E9'
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif']
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif']
                     }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        .word-active {
-            color: #005EB8;
-            background-color: #DBE2E9;
-            padding: 1px 4px;
-            border-radius: 4px;
-            font-weight: 600;
-            transition: all 120ms ease-out;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-transparent m-0 p-4 flex items-center justify-center min-h-[160px] font-sans antialiased w-full">
+<body class="bg-transparent m-0 p-2 sm:p-4 font-sans text-ttnSlate antialiased w-full">
 
-    <div class="w-full max-w-2xl text-center space-y-3">
+    <div class="max-w-4xl mx-auto space-y-6">
         
-        <h1 id="headingContainer" class="text-2xl sm:text-3xl font-bold text-ttnNavy tracking-tight">
-            Think of a Time...
-        </h1>
+        <div class="text-center space-y-2">
+            <h1 class="text-2xl sm:text-3xl font-bold text-ttnNavy tracking-tight">
+                Think of a Time...
+            </h1>
+            <p id="subheadingContainer" class="text-sm sm:text-base text-slate-600 font-normal leading-relaxed max-w-xl mx-auto"></p>
+            <div class="flex justify-center pt-1">
+                <div class="w-12 h-1 bg-ttnTrustBlue rounded-full"></div>
+            </div>
+        </div>
 
-        <p id="subheadingContainer" class="text-sm sm:text-base text-slate-600 font-normal leading-relaxed"></p>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 bg-white border border-slate-200/80 rounded-2xl p-6 sm:p-8 shadow-sm items-center">
+            
+            <div class="md:col-span-7 space-y-4 text-sm sm:text-base leading-relaxed text-slate-700">
+                <p>
+                    <strong class="text-ttnNavy font-semibold">You weren't wrong.</strong> The advice was sound. You said it kindly. And it went nowhere.
+                </p>
+                <p>
+                    That's not a failure of your knowledge. It's very likely the <span class="text-ttnTrustBlue font-semibold">righting reflex</span> again: correct information, delivered without partnership, rarely moves anyone on its own.
+                </p>
+                <div class="p-3.5 bg-slate-50 border-l-4 border-ttnTrustBlue rounded-r-lg text-ttnNavy font-medium text-xs sm:text-sm">
+                    There's a better way to hold these conversations. It has a name, and a shape. We call it the <strong>Spirit of Motivational Interviewing</strong>.
+                </div>
+            </div>
 
-        <div class="flex justify-center pt-2">
-            <div class="w-16 h-1 bg-ttnTrustBlue rounded-full"></div>
+            <div class="md:col-span-5">
+                <div class="relative aspect-[4/3] rounded-xl overflow-hidden shadow-md border border-slate-200 group bg-slate-100">
+                    <img 
+                        src="clinician_reflection.jpeg" 
+                        alt="Clinician in quiet reflective moment" 
+                        class="w-full h-full object-cover transform group-hover:scale-105 transition-all duration-500"
+                        onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center p-4 text-center bg-slate-100 text-slate-500 text-xs\'><svg class=\'w-8 h-8 mb-2 text-slate-400\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z\'/></svg><span class=\'font-medium text-ttnNavy\'>clinician_reflection.jpeg</span><span>Reflective NHS moment</span></div>';"
+                    />
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -61,14 +79,13 @@
         const subheadingEl = document.getElementById('subheadingContainer');
         const audio = document.getElementById('syncAudio');
 
-        // Dynamically wrap words in spans for precise synchronization
         subheadingEl.innerHTML = words.map((w, i) => `<span id="word-${i}" class="inline-block transition-colors">${w}</span>`).join(' ');
 
         let activeWordSpan = null;
 
         function clearHighlights() {
             if (activeWordSpan) {
-                activeWordSpan.classList.remove('word-active');
+                activeWordSpan.classList.remove('bg-ttnIceBlue', 'text-ttnTrustBlue', 'font-semibold', 'px-1', 'rounded');
                 activeWordSpan = null;
             }
         }
@@ -81,7 +98,7 @@
 
             if (targetSpan && targetSpan !== activeWordSpan) {
                 clearHighlights();
-                targetSpan.classList.add('word-active');
+                targetSpan.classList.add('bg-ttnIceBlue', 'text-ttnTrustBlue', 'font-semibold', 'px-1', 'rounded');
                 activeWordSpan = targetSpan;
             }
         });
@@ -90,24 +107,14 @@
             clearHighlights();
         });
 
-        function playImmediately() {
-            clearHighlights();
+        window.addEventListener('DOMContentLoaded', () => {
             audio.src = audioFile;
             audio.currentTime = 0;
             audio.volume = 1.0;
-            
             audio.play().catch(err => {
-                console.warn('Direct autoplay restricted by browser policy:', err);
-                // Setup one-click anywhere fallback if unmuted autoplay is blocked
-                document.body.addEventListener('click', () => {
-                    audio.play();
-                }, { once: true });
+                console.warn('Autoplay waiting for touch:', err);
+                document.body.addEventListener('click', () => audio.play(), { once: true });
             });
-        }
-
-        // Trigger audio immediately on load
-        window.addEventListener('DOMContentLoaded', () => {
-            playImmediately();
         });
     </script>
 
